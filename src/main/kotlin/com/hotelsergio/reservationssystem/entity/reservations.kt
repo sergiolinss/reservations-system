@@ -11,10 +11,11 @@ import kotlin.random.Random
 data class Reservations(
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long? = null,
-    @Column(unique = true, nullable = false) val reservationCode: Long = Random.nextLong(),
+    @Column(unique = true, nullable = false) val reservationsCode: Long = Random.nextLong(),
     @Column(nullable = false) val checkInDate: LocalDate,
     @Column(nullable = false) val checkOutDate: LocalDate,
     @Column(nullable = false) var reservationValue: BigDecimal = BigDecimal.ZERO,
     @Enumerated val reservationStatus: Status = Status.ok,
-    @ManyToOne val customer: Customer?
+    @ManyToOne var customer: Customer?
+
 )
