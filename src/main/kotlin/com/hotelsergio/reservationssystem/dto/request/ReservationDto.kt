@@ -1,4 +1,4 @@
-package com.hotelsergio.reservationssystem.dto
+package com.hotelsergio.reservationssystem.dto.request
 
 import com.hotelsergio.reservationssystem.entity.Customer
 import com.hotelsergio.reservationssystem.entity.Reservations
@@ -16,11 +16,10 @@ data class ReservationDto(
     val checkOutDate: LocalDate,
     @field:NotNull(message = "Reservation Value cannot be null.")
     val reservationValue: BigDecimal,
-    @field:CPF(message = "CPF invalid")
-    val customerCpf: String
+    val customerId: Long,
 
 
-) {
+    ) {
     init {
         require(checkOutDate.isAfter(checkInDate.plusDays(1))) {
             "Check-out date must be at least 1 day after check-in date."
@@ -31,7 +30,7 @@ data class ReservationDto(
         checkInDate = this.checkInDate,
         checkOutDate = this.checkOutDate,
         reservationValue = this.reservationValue,
-        customer = Customer(cpf = this.customerCpf)
+        customer = Customer(id = this.customerId)
     )
 
 }

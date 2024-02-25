@@ -21,6 +21,6 @@ class ReservatiosService(
     override fun findByReservationsCode(customerId: Int, reservationCode: Long): Reservations {
         val reservations: Reservations = (this.reservationsRepository.findByReservationsCode(reservationCode)
             ?: throw RuntimeException("Reservations Code $reservationCode not found"))
-        return if (reservations.customer?.id == customerId) reservations else throw RuntimeException("Contact admin")
+        return if (reservations.customer?.id?.toInt() == customerId) reservations else throw RuntimeException("Contact admin")
     }
 }

@@ -1,8 +1,8 @@
 package com.hotelsergio.reservationssystem.controller
 
-import com.hotelsergio.reservationssystem.dto.CustomerDto
-import com.hotelsergio.reservationssystem.dto.CustomerUpdateDto
-import com.hotelsergio.reservationssystem.dto.CustomerView
+import com.hotelsergio.reservationssystem.dto.request.CustomerDto
+import com.hotelsergio.reservationssystem.dto.request.CustomerUpdateDto
+import com.hotelsergio.reservationssystem.dto.response.CustomerView
 import com.hotelsergio.reservationssystem.entity.Customer
 import com.hotelsergio.reservationssystem.service.Implemented.CustomerService
 import jakarta.validation.Valid
@@ -27,10 +27,10 @@ class CustomerResource(
     @PostMapping
     fun saveCustomer(@RequestBody @Valid customerDto: CustomerDto): ResponseEntity<String>{
         val savedCustomer = this.customerService.save(customerDto.toEntity())
-        return ResponseEntity.status(HttpStatus.CREATED).body("Customer ${savedCustomer.email} saved!")
+        return ResponseEntity.status(HttpStatus.CREATED).body("Customer ${savedCustomer.nome} ${savedCustomer.sobrenome} saved!")
     }
     @GetMapping("/{id}")
-    fun findById(@PathVariable id: Int): ResponseEntity<CustomerView> {
+    fun findById(@PathVariable id: Long): ResponseEntity<CustomerView> {
         val customer: Customer = this.customerService.findbyId(id)
         return ResponseEntity.status(HttpStatus.OK).body(CustomerView(customer))
     }
@@ -39,7 +39,7 @@ class CustomerResource(
     fun deleteCustomer(@PathVariable id: Long) = this.customerService.delete(id)
 
     @PatchMapping
-    fun updateCustomer(@RequestParam(value = "customerId")id: Int, @RequestBody @Valid customerUpdateDto: CustomerUpdateDto): ResponseEntity<CustomerView>{
+    fun updateCustomer(@RequestParam(value = "customerId")id: Long, @RequestBody @Valid customerUpdateDto: CustomerUpdateDto): ResponseEntity<CustomerView>{
         val customer: Customer = this.customerService.findbyId(id)
         val customerToUpdate = customerUpdateDto.toEntity(customer)
         val customerUpdated: Customer = this.customerService.save(customerToUpdate)
