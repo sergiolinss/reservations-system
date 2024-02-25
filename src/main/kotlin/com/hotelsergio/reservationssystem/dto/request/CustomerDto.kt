@@ -1,7 +1,6 @@
-package com.hotelsergio.reservationssystem.dto
+package com.hotelsergio.reservationssystem.dto.request
 
 import com.hotelsergio.reservationssystem.entity.Customer
-import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotEmpty
 import org.hibernate.validator.constraints.br.CPF
 

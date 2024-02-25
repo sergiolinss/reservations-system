@@ -4,7 +4,7 @@ import com.hotelsergio.reservationssystem.entity.Customer
 
 interface ICustomerService {
     fun save(customer: Customer): Customer
-    fun findbyId(id: Int): Customer
+    fun findbyId(id: Long): Customer
     fun delete(id: Long)
 
 }

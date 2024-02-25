@@ -1,8 +1,8 @@
 package com.hotelsergio.reservationssystem.controller
 
-import com.hotelsergio.reservationssystem.dto.ReservationDto
-import com.hotelsergio.reservationssystem.dto.ReservationView
-import com.hotelsergio.reservationssystem.dto.ReservationViewList
+import com.hotelsergio.reservationssystem.dto.request.ReservationDto
+import com.hotelsergio.reservationssystem.dto.response.ReservationView
+import com.hotelsergio.reservationssystem.dto.response.ReservationViewList
 import com.hotelsergio.reservationssystem.entity.Reservations
 import com.hotelsergio.reservationssystem.service.Implemented.ReservatiosService
 import jakarta.validation.Valid
@@ -28,7 +28,7 @@ class ReservationsResource(private val reservatiosService: ReservatiosService) {
     }
 
     @GetMapping
-    fun findAllByCustomer(@RequestParam(value = "customerId") customerId: Int): ResponseEntity<List<ReservationViewList>> {
+        fun findAllByCustomer(@RequestParam(value = "customerId") customerId: Int): ResponseEntity<List<ReservationViewList>> {
         val reservationViewList: List<ReservationViewList> =
             this.reservatiosService.findAllByCustomer(customerId).stream().map { reservations: Reservations
                 ->

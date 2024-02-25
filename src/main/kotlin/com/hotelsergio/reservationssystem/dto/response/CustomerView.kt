@@ -1,4 +1,4 @@
-package com.hotelsergio.reservationssystem.dto
+package com.hotelsergio.reservationssystem.dto.response
 
 import com.hotelsergio.reservationssystem.entity.Customer
 import com.hotelsergio.reservationssystem.entity.Reservations
